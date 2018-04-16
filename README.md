@@ -140,3 +140,46 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 		</tr>
 	</table>
 </p>
+
+<p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/hand.pgm">hand.pgm</a>: </p>&#x000A;&#x000A;
+<pre class="code highlight js-syntax-highlight plaintext">
+<code>./testRigidTransform -i ../Samples/hand.pgm -o ../Results/hand -e -a 0.2 -b 0.2 -t 0.314</code>
+</pre>&#x000A;&#x000A;
+<p>
+	<table cellpadding="5">
+		<tr>
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/hand.png">
+				<img width="125" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/hand.png" alt="Input image" />
+			</a>
+		</td>		
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_points.eps">
+				<img width="110" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_points.png" alt="Input points" />
+			</a>
+		</td>
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_tpoint.eps">
+				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_tpoint.png" alt="T_point" />
+			</a>
+		</td>
+    		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_thull.eps">
+				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_thull.png" alt="T_hull" />
+			</a>
+		</td>  
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_tpoly.eps">
+				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/hand_tpoly.png" alt="T_poly" />
+			</a>
+		</td>  	
+		</tr>
+		<tr>
+			<td align="center" valign="center">  Input image </td>
+			<td align="center" valign="center">  Input points </td>
+			<td align="center" valign="center">  Rigid motion point-by-point </td>
+			<td align="center" valign="center">  Rigid motion by convex hull </td>
+			<td align="center" valign="center">  Rigid motion by polygonalization </td>
+		</tr>
+	</table>
+</p>
