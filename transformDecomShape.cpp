@@ -145,6 +145,13 @@ int main(int argc, char** argv) {
             aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
         aBoard.drawLine(vecPoly.at(id).front()[0],vecPoly.at(id).front()[1],vecPoly.at(id).back()[0],vecPoly.at(id).back()[1]);
     }
+    //Draw polygon
+    aBoard.setPenColor(DGtal::Color::Black);
+    for(size_t id=0; id<vPoints.size(); id++) {
+        for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
+            aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
+        aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
+    }
     if(eps){
         sprintf(filename,"%s_decomp.eps",infile.c_str());
         aBoard.saveEPS(filename);
@@ -171,6 +178,15 @@ int main(int argc, char** argv) {
             Point p (vecConvexShape.at(id)[i][0],vecConvexShape.at(id)[i][1]);
             aBoard << p;
         }
+    }
+    //Draw polygon
+    aBoard.setPenColor(DGtal::Color::Black);
+    //for(size_t id=0; id<vPoints.size(); id++)
+    {
+        size_t id=0;
+        for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
+            aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
+        aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
     }
     if(eps){
         sprintf(filename,"%s_shape.eps",infile.c_str());
