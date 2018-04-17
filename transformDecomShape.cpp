@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
     string inputFile=vm["input"].as<string>();
     string outputFile=vm["output"].as<string>();
     string infile = inputFile.substr(0, inputFile.find_last_of("."));
-    cout<<"inputFile="<<inputFile<<" infile="<<infile<<" outputFile="<<outputFile<<endl;
+    //cout<<"inputFile="<<inputFile<<" infile="<<infile<<" outputFile="<<outputFile<<endl;
     /********** Parameters ********/
 
     /*** Polygonalize pgm image ***/
