@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
             ("help,h", "display this message")
             ("input,i", po::value<string>(), "input filename.")
             ("output,o", po::value<std::string>()->default_value("./"), "output dir (default ./).")
+            ("dir,d", po::value<std::string>()->default_value("./"), "execute dir (default ./).")
             ("tx,a", po::value<double>()->default_value(0.0), "x-translation.")
             ("ty,b", po::value<double>()->default_value(0.0), "y-translation.")
             ("theta,t", po::value<double>()->default_value(0.0), "rotation angle.")
@@ -57,6 +58,7 @@ int main(int argc, char** argv) {
         b=vm["ty"].as<double>();
         theta=vm["theta"].as<double>();
     }
+    string dir=vm["dir"].as<string>();
     string inputFile=vm["input"].as<string>();
     string outputFile=vm["output"].as<string>();
     string infile = inputFile.substr(0, inputFile.find_last_of("."));
@@ -68,7 +70,7 @@ int main(int argc, char** argv) {
     char filename[FILENAMESIZE];
     sprintf(filename,"%s.sdp",infile.c_str());
     //-i *.pgm -o *_poly.sdp
-    sprintf(instruction,"./polygonalization -i %s -o %s",inputFile.c_str(),filename);
+    sprintf(instruction,"%spolygonalization -i %s -o %s",dir.c_str(),inputFile.c_str(),filename);
     if(reg)
         sprintf(instruction,"%s -r",instruction);
     if(eps)
@@ -109,7 +111,7 @@ int main(int argc, char** argv) {
     //input : *.poly (ex: BarbedThing.poly)
     //output : *-acd.poly (ex: BarbedThing-acd.poly) and *_0.sdp, *_1.sdp, ...
     sprintf(filename,"%s.poly",infile.c_str());
-    sprintf(instruction,"./decomposeShapeAcd2d -s %s",filename);
+    sprintf(instruction,"%sdecomposeShapeAcd2d -s %s",dir.c_str(),filename);
     system(instruction);
 
     ifstream inFile;
