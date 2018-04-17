@@ -19,15 +19,6 @@ include_directories ("${PROJECT_SOURCE_DIR}/src/hull")
 include_directories ("${PROJECT_SOURCE_DIR}/src/mathtool")
 include_directories ("${PROJECT_SOURCE_DIR}/libs/FIST")
 
-#OpenCV
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
-
-#OpenGL
-find_package(OpenGL REQUIRED)
-find_package(GLUT REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS})
-
 #Required in DGtal
 FIND_PACKAGE(DGtal REQUIRED)
 INCLUDE_DIRECTORIES(${DGTAL_INCLUDE_DIRS})

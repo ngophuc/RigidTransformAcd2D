@@ -11,9 +11,6 @@
 #include <vector>
 #include <algorithm>
 
-#include "cv.h"
-#include "highgui.h"
-
 using namespace std;
 using namespace DGtal;
 using namespace Z2i;
