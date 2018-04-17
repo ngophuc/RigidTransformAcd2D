@@ -198,17 +198,3 @@ BoundingBox findBoundingBox(const vector<RealPoint>& vec)
     //cout<<"min=("<<minX<<","<<minY<<") and max=("<<maxX<<","<<maxY<<")"<<endl;
     return BoundingBox(RealPoint(minX,maxY),RealPoint(minX,minY),RealPoint(maxX,minY),RealPoint(maxX,maxY));
 }
-
-BoundingBox findBoundingBox(const IplImage* img, CvScalar color)
-{
-    CvScalar p;
-    vector<Point> vecP;
-    for(int i=0; i<img->width; i++)
-        for(int j=0; j<img->height; j++)
-        {
-            p=cvGet2D(img,j,i);
-            if(p.val[0]==color.val[0] && p.val[1]==color.val[1] && p.val[2]==color.val[2])
-                vecP.push_back(Point(j,i));
-        }
-    return findBoundingBox(vecP);
-}

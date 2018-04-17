@@ -43,6 +43,5 @@ class BoundingBox
 
 BoundingBox findBoundingBox(const vector<Point>& vec);
 BoundingBox findBoundingBox(const vector<RealPoint>& vec);
-BoundingBox findBoundingBox(const IplImage* img, CvScalar color);
 
 #endif // BOUNDINGBOX_H

@@ -52,4 +52,4 @@ add_executable(decomposeShapeAcd2d acd2d_main.cpp ${SOURCES})
 target_link_libraries(decomposeShapeAcd2d ${PROJECT_SOURCE_DIR}/libs/FIST/libFIST.osx.a)
 
 add_executable(transformDecomShape transformDecomShape Halfplane Boundingbox Utility RigidTransform)
-target_link_libraries(transformDecomShape ${DGTAL_LIBRARIES} ${DGtalToolsLibDependencies} ${OpenCV_LIBS} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+target_link_libraries(transformDecomShape ${DGTAL_LIBRARIES} ${DGtalToolsLibDependencies})
