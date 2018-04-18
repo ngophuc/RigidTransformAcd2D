@@ -122,7 +122,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 		</td>
 		<td align="center" valign="center">
 			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_shape.eps">
-				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_shape.png" alt="Digitized decomposition" />
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_shape.png" alt="Digitized decomposition" />
 			</a>
 		</td>
     		<td align="center" valign="center">
