@@ -14,7 +14,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">flower.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./transformDecomShape -i ../Samples/flower.pgm -o ../Results/flower -e -a 0.2 -b 0.1 -t 0.8</code>
+<code>./transformDecomShape -i ../Samples/flower.pgm -o ../Results/flower_result.pgm -e -a 0.2 -b 0.1 -t 0.8</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
@@ -55,9 +55,95 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 	</table>
 </p>
 
+<p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">leaf.pgm</a>: </p>&#x000A;&#x000A;
+<pre class="code highlight js-syntax-highlight plaintext">
+<code>./transformDecomShape -i ../Dataset/leaf.pgm -o ../Dataset/leaf_result.pgm -e -a 0.1 -b 0.1 -t 0.1</code>
+</pre>&#x000A;&#x000A;
+<p>
+	<table cellpadding="5">
+		<tr>
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/leaf.png">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/leaf.png" alt="Input image" />
+			</a>	
+		</td>	
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_poly.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_poly.png" alt="Polygonalization" />
+			</a>
+		</td>	
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_decomp.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_decomp.png" alt="Convex decomposition" />
+			</a>
+		</td>
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_shape.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_shape.png" alt="Digitized decomposition" />
+			</a>
+		</td>
+    		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_result.pmg">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/leaf_result.png" alt="Transformed result" />
+			</a>
+		</td>  
+		</tr>
+		<tr>
+			<td align="center" valign="center">  Input image </td>
+			<td align="center" valign="center">  Polygon extraction </td>
+			<td align="center" valign="center">  Convex decomposition </td>
+			<td align="center" valign="center">  Digitized decomposition </td>
+			<td align="center" valign="center">  Transformed result </td>
+		</tr>
+	</table>
+</p>
+
+<p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">snowflake.pgm</a>: </p>&#x000A;&#x000A;
+<pre class="code highlight js-syntax-highlight plaintext">
+<code>./transformDecomShape -i ../Samples/snowflake.pgm -o ../Results/snowflake_result.pgm -e -a 0.2 -b 0.1 -t 0.8</code>
+</pre>&#x000A;&#x000A;
+<p>
+	<table cellpadding="5">
+		<tr>
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/snowflake.png">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/snowflake.png" alt="Input image" />
+			</a>	
+		</td>	
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_poly.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_poly.png" alt="Polygonalization" />
+			</a>
+		</td>	
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_decomp.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_decomp.png" alt="Convex decomposition" />
+			</a>
+		</td>
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_shape.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_shape.png" alt="Digitized decomposition" />
+			</a>
+		</td>
+    		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_result.pmg">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/snowflake_result.png" alt="Transformed result" />
+			</a>
+		</td>  
+		</tr>
+		<tr>
+			<td align="center" valign="center">  Input image </td>
+			<td align="center" valign="center">  Polygon extraction </td>
+			<td align="center" valign="center">  Convex decomposition </td>
+			<td align="center" valign="center">  Digitized decomposition </td>
+			<td align="center" valign="center">  Transformed result </td>
+		</tr>
+	</table>
+</p>
+
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">hand.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./transformDecomShape -i ../Dataset/hand.pgm -o ../Dataset/hand_res.pgm -e -a 0.1 -b 0.1 -t 0.1</code>
+<code>./transformDecomShape -i ../Dataset/hand.pgm -o ../Dataset/hand_result.pgm -e -a 0.1 -b 0.1 -t 0.1</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
@@ -97,5 +183,4 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 		</tr>
 	</table>
 </p>
-
 
