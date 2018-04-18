@@ -338,14 +338,16 @@ void generateTextImage(vector<Region> &regions, Domain domain, string filename, 
     ofstream outfile;
     string output=filename+".txt";
     outfile.open(output.c_str());
+    //outfile << domain.upperBound()[0] << " " << domain.upperBound()[1] << endl;
+    //outfile << domain.lowerBound()[0] << " " << domain.lowerBound()[1] << endl;
     int width = domain.upperBound()[0] - domain.lowerBound()[0] + 1;
     int height = domain.upperBound()[1] - domain.lowerBound()[1] + 1;
-    outfile<<width<<" "<<height<<endl;
+    outfile<<height<<" "<<width<<endl;
 
-    vector<vector<int> > idRegions( width, vector<int>(1, -1 ));
-    for(int i = 0; i < width; i++)
+    vector<vector<int> > idRegions( height, vector<int>(1, -1 ));
+    for(int i = 0; i < height; i++)
     {
-        for(int j = 1; j < height; j++)
+        for(int j = 1; j < width; j++)
         {
             idRegions.at(i).push_back(-1);
         }
@@ -356,18 +358,17 @@ void generateTextImage(vector<Region> &regions, Domain domain, string filename, 
         vector<Point> points = regions.at(i).points;
         for (int j = 0; j < points.size(); ++j)
         {
-            idRegions[points.at(j)[0] + numberPixelEnlarge][points.at(j)[1] + numberPixelEnlarge] = regions.at(i).id;
+            idRegions[points.at(j)[1] + numberPixelEnlarge][points.at(j)[0] + numberPixelEnlarge] = regions.at(i).id;
         }
     }
 
-    //Attention write as (w,h) => (-y,x) !!!
-    for(int i = 0; i < width; i++)
+    for(int i = height-1; i >= 0; i--)//for(int i = 0; i < height; i++)
     {
-        for(int j = 0; j < height - 1; j++)
+        for(int j = 0; j < width - 1; j++)
         {
-            outfile << idRegions[i][j] << " ";//PHUC
+            outfile << idRegions[i][j] << " ";
         }
-        outfile << idRegions[i][height - 1] << endl;
+        outfile << idRegions[i][width - 1] << endl;
     }
     outfile.close();
 }
@@ -403,7 +404,7 @@ int getConnectedComponent(string input, string output, int threshold, int typeCo
     //Gengerate and draw regions
     vector<Region> regions;
     //string filename=output+".svg";
-    coloringConnectedComponent(thresholderImage, idRegions, regions);//,filename.c_str()
+    coloringConnectedComponent(thresholderImage, idRegions, regions,"cc.svg");//,filename.c_str()
     generateTextImage(regions, domainThresholderImage, output);
 
     Point p(0,0);//(regions.at(0).points.at(0)[0], regions.at(0).points.at(0)[1]);
