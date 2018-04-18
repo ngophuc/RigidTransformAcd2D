@@ -14,7 +14,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">flower.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./testRigidTransform -i ../Samples/flower.pgm -o ../Results/flower -e -a 0.2 -b 0.1 -t 0.8</code>
+<code>./transformDecomShape -i ../Samples/flower.pgm -o ../Results/flower -e -a 0.2 -b 0.1 -t 0.8</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
@@ -57,7 +57,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">hand.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./testRigidTransform -i ../Samples/hand.pgm -o ../Results/flower -e -a 0.2 -b 0.1 -t 0.8</code>
+<code>./transformDecomShape -i ../Dataset/hand.pgm -o ../Dataset/hand_res.pgm -e -a 0.1 -b 0.1 -t 0.1</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
