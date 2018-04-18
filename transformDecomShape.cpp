@@ -19,6 +19,8 @@ vector<Point> computeConvexHull(const vector<Point>& vecPoints);
 vector<Point> generateConvexShape(const vector<Point>& vecPoints, vector<HalfPlane>& vecHP, vector<Point> &vecVertices, vector<Point> &vecFacets, bool isVerbose=false);
 vector<vector<Point> > generateConvexShape(const vector<vector<Point> >& vecPoints, vector<vector<HalfPlane> > &vHP, vector<vector<Point> > &vVertices, vector<vector<Point> > &vFacets, bool isVerbose);
 
+vector<vector<Point> > getTriangles(const vector<Point>& vecPoints, const vector<vector<Point> >& vecPoly);
+
 int main(int argc, char** argv) {
     /********** Parameters ********/
     po::options_description general_opt("Allowed options are: ");
@@ -135,6 +137,9 @@ int main(int argc, char** argv) {
         vector< Point> poly = PointListReader<Point>::getPointsFromFile(filename);
         vecPoly.push_back(poly);
     }
+    vector<vector<Point> > vTri=getTriangles(vPoints.at(id),vecPoly);
+    for(int id_T=0; id_T<vTri.size(); id_T++)
+        vecPoly.push_back(vTri.at(id_T));
     /*** Read decomposition points ***/
 
     /**** Draw decomposition *****/
@@ -149,7 +154,8 @@ int main(int argc, char** argv) {
     }
     //Draw polygon
     aBoard.setPenColor(DGtal::Color::Black);
-    for(size_t id=0; id<vPoints.size(); id++) {
+    {
+        id=0;
         for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
             aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
         aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
@@ -173,8 +179,8 @@ int main(int argc, char** argv) {
     /**** Digitize decomposition ****/
 
     /**** Draw digitized sets *****/
+    //show points
     for(int id=0; id<vecConvexShape.size(); id++) {
-        //show points
         aBoard << CustomStyle("PointVector",new  CustomColors(hueMap(id),hueMap(id)));
         for (size_t i=0; i<vecConvexShape.at(id).size(); i++) {
             Point p (vecConvexShape.at(id)[i][0],vecConvexShape.at(id)[i][1]);
@@ -183,7 +189,6 @@ int main(int argc, char** argv) {
     }
     //Draw polygon
     aBoard.setPenColor(DGtal::Color::Black);
-    //for(size_t id=0; id<vPoints.size(); id++)
     {
         size_t id=0;
         for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
@@ -201,22 +206,93 @@ int main(int argc, char** argv) {
     aBoard.clear();
     /**** Draw digitized sets *****/
 
-    /**** Transform shape ****/
+    /**** Transform shape FIXME : without round !****/
     transformation T;
     T[0]=a;
     T[1]=b;
     T[2]=theta;
-    vector<vector<RealPoint> > tvecPolygon;
-    vector<vector<Point> > tPtsPoly=transformPolygon(vPoints, tvecPolygon, T);
+    vector<vector<Point> > tvecPoly;
+    vector<RealPoint> vP;
+    for(size_t it_contour=0; it_contour<vecPoly.size(); it_contour++) {
+        RealPoint p=findCentroid(vecPoly.at(it_contour));
+        vP.push_back(p);
+    }
+    RealPoint c=findCentroid(vP);
+    for(size_t id=0; id<vecPoly.size(); id++) {
+        vector<Point> tPoly=transformPolygonRound(vecPoly.at(id), T, c);
+        tvecPoly.push_back(tPoly);
+    }
+    /**** Transform shape ****/
+
+    /**** Draw transformed decomposition *****/
+    aBoard.setLineWidth(15.0);
+    for(size_t id=0; id<tvecPoly.size(); id++) {
+        aBoard.setPenColor(hueMap(id));
+        for(auto it=tvecPoly.at(id).begin(); it+1!=tvecPoly.at(id).end();it++)
+            aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
+        aBoard.drawLine(tvecPoly.at(id).front()[0],tvecPoly.at(id).front()[1],tvecPoly.at(id).back()[0],tvecPoly.at(id).back()[1]);
+    }
+    aBoard.setPenColor(DGtal::Color::Black);
+    {
+        id=0;
+        for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
+            aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
+        aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
+    }
+    if(eps){
+        sprintf(filename,"%s_tdecomp.eps",infile.c_str());
+        aBoard.saveEPS(filename);
+    }
+    else{
+        sprintf(filename,"%s_tdecomp.svg",infile.c_str());
+        aBoard.saveSVG(filename);
+    }
+    aBoard.clear();
+    /**** Draw transformed decomposition *****/
+
+    /**** Digitize transformed shape ****/
+    vector< vector< HalfPlane > > tvecHP;
+    vector< vector< Point > > tvecFacets, tvecVertices;
+    vector< vector< Point> > tvecConvexShape;
+    tvecConvexShape=generateConvexShape(tvecPoly,tvecHP,tvecVertices,tvecFacets,false);
+    /**** Digitize transformed shape ****/
+
+    /**** Draw transformed shape ****/
+    aBoard << SetMode("PointVector", "Both");
+    for(size_t id=0; id<tvecConvexShape.size(); id++) {
+        aBoard << CustomStyle("PointVector",new  CustomColors(hueMap(id),hueMap(id)));
+        for (size_t i=0; i<tvecConvexShape.at(id).size(); i++)
+            aBoard << Point(tvecConvexShape.at(id).at(i)[0],tvecConvexShape.at(id).at(i)[1]);
+    }
+    aBoard.setPenColor(DGtal::Color::Black);
+    {
+        id=0;
+        for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
+            aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
+        aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
+    }
+    if(eps){
+        sprintf(filename,"%s_tshape.eps",infile.c_str());
+        aBoard.saveEPS(filename);
+    }
+    else{
+        sprintf(filename,"%s_tshape.svg",infile.c_str());
+        aBoard.saveSVG(filename);
+    }
+    aBoard.clear();
+    /**** Draw transformed shape ****/
+
+    /**** Save transformed shape ****/
     Point pMin,pMax;
     int marge=10;
     id=1;
-    findBoundingBox(tPtsPoly.at(id),pMin,pMax);
+    findBoundingBox(tvecConvexShape,pMin,pMax);
     Image imgOut(Domain(pMin-Point(marge,marge),pMax+Point(marge,marge)));
-    for (vector<Point>::const_iterator it = tPtsPoly.at(id).begin(); it != tPtsPoly.at(id).end(); it++)
-        imgOut.setValue(*it,OBJ);
+    for(size_t id=0; id<tvecConvexShape.size(); id++)
+        for (vector<Point>::const_iterator it = tvecConvexShape.at(id).begin(); it != tvecConvexShape.at(id).end(); it++)
+            imgOut.setValue(*it,OBJ);
     PGMWriter<Image>::exportPGM(outputFile,imgOut);
-    /**** Transform shape ****/
+    /**** Save transformed shape ****/
 
     //Remove temporary files
     sprintf(filename,"rm %s.txt",infile.c_str());
@@ -424,4 +500,124 @@ vector<vector<Point> > generateConvexShape(const vector<vector<Point> >& vecPoin
         vPoint_CH.push_back(vecPoint_CH);
     }
     return vPoint_CH;
+}
+
+bool isBoundarySegment(const vector<Point>& vecBoundary, Point p1, Point p2)
+{
+    int id1=findElement(vecBoundary,p1);
+    int id2=findElement(vecBoundary,p2);
+    if(id1==-1 || id2==-1)
+        return false;
+    if((abs(id1-id2)==1))//|| (abs(id1-id2)==(vecBoundary.size()-1)
+        return true;
+    return false;
+}
+
+bool isShareSegment(const vector<Point>& vecPoly, Point p1, Point p2)
+{
+    bool id1=isExist(vecPoly,p1);
+    bool id2=isExist(vecPoly,p2);
+    if(id1 && id2)
+        return true;
+    return false;
+}
+
+bool isShareSegment(const vector<vector<Point> >& vecPoly, Point p1, Point p2, size_t notId)
+{
+    for(size_t id=0; id<vecPoly.size(); id++)
+        if(id!=notId && isShareSegment(vecPoly.at(id),p1,p2))
+            return true;
+    return false;
+}
+
+bool existSegment(const vector<Point>& vecP1, const vector<Point>& vecP2, Point p1, Point p2) {
+    //P1
+    size_t id1=findElement(vecP1,p1);
+    if(id1!=-1)
+        if(vecP2.at(id1)==p2)
+            return true;
+    size_t id2=findElement(vecP2,p1);
+    if(id2!=-1)
+        if(vecP1.at(id2)==p2)
+            return true;
+    //P2
+    id1=findElement(vecP1,p2);
+    if(id1!=-1)
+        if(vecP2.at(id1)==p1)
+            return true;
+    id2=findElement(vecP2,p2);
+    if(id2!=-1)
+        if(vecP1.at(id2)==p1)
+            return true;
+    return false;
+}
+
+bool existTriangle(const vector<vector<Point> >& tri, Point p1, Point p2, Point p3)
+{
+    for(size_t id=0; id<tri.size(); id++) {
+        if(tri.at(id).at(0)==p1 && tri.at(id).at(1)==p2 && tri.at(id).at(2)==p3)//123
+            return true;
+        if(tri.at(id).at(0)==p2 && tri.at(id).at(1)==p1 && tri.at(id).at(2)==p3)//213
+            return true;
+        if(tri.at(id).at(0)==p3 && tri.at(id).at(1)==p2 && tri.at(id).at(2)==p1)//321
+            return true;
+        if(tri.at(id).at(0)==p1 && tri.at(id).at(1)==p3 && tri.at(id).at(2)==p2)//132
+            return true;
+    }
+    return false;
+}
+
+vector<vector<Point> > getTriangles(const vector<Point>& vecP1, const vector<Point>& vecP2)
+{
+    vector<vector<Point> > vecTriangles;
+    for(size_t id=0; id<vecP1.size()-1; id++) {
+        vector<Point> triangle;
+        Point p1=vecP1.at(id);
+        Point p2=vecP2.at(id);
+        triangle.push_back(p1);
+        triangle.push_back(p2);
+        for(size_t idB=id+1; idB<vecP1.size(); idB++) {
+            Point pp1=vecP1.at(idB);
+            Point pp2=vecP2.at(idB);
+            if(pp1!=p1 && pp2==p2 && existSegment(vecP1,vecP2,p1,pp1))
+                triangle.push_back(pp1);
+            else if(pp1==p1 && pp2!=p2 && existSegment(vecP1,vecP2,p2,pp2))
+                triangle.push_back(pp2);
+            else if(pp1!=p2 && pp2==p1 && existSegment(vecP1,vecP2,p2,pp1))
+                triangle.push_back(pp1);
+            else if(pp1==p2 && pp2!=p1 && existSegment(vecP1,vecP2,p1,pp2))
+                triangle.push_back(pp2);
+        }
+        if(triangle.size()==3 && !existTriangle(vecTriangles,triangle.at(0),triangle.at(1),triangle.at(2)))
+            vecTriangles.push_back(triangle);
+    }
+    return vecTriangles;
+}
+
+vector<vector<Point> > getTriangles(const vector<Point>& vecPoints, const vector<vector<Point> >& vecPoly)
+{
+    //Find unsharing segments
+    vector<Point> vecSeg1, vecSeg2;
+    for(size_t id=0; id<vecPoly.size(); id++) {
+        for(auto it=vecPoly.at(id).begin(); it+1!=vecPoly.at(id).end();it++) {
+            Point p1=(*it);
+            Point p2=(*(it+1));
+            if(!isBoundarySegment(vecPoints,p1,p2)) {
+                if(!isShareSegment(vecPoly,p1,p2,id)) {
+                    vecSeg1.push_back(p1);
+                    vecSeg2.push_back(p2);
+                }
+            }
+        }
+        //Last segment
+        Point p1=vecPoly.at(id).front();
+        Point p2=vecPoly.at(id).back();
+        if(!isBoundarySegment(vecPoints,p1,p2)) {
+            if(!isShareSegment(vecPoly,p1,p2,id)) {
+                vecSeg1.push_back(p1);
+                vecSeg2.push_back(p2);
+            }
+        }
+    }
+    return getTriangles(vecSeg1,vecSeg2);
 }
