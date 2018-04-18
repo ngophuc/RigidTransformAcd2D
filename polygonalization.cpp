@@ -119,8 +119,8 @@ int main(int argc, char** argv)
     /********** Verify angle + length polygon **********/
 
     //Remove temporary files of connected component
-    //filename="rm "+outputFile+".txt";
-    //system(filename.c_str());
+    filename="rm "+outputFile+".txt";
+    system(filename.c_str());
 
     return 0;
 }
@@ -547,18 +547,6 @@ vector<Point> getPolygon(int** tabLabels, vector<Point>& vecBoundary, vector<Poi
     }
     else //if convex then push ft point hull
         polygon.push_back(polyline.back());
-
-
-    /**** Draw polygon *****/
-    Board2D aBoard;
-    aBoard.setLineWidth(15.0);
-    aBoard.setPenColor(DGtal::Color::Black);
-    for(auto it=polygon.begin(); it+1!=polygon.end();it++)
-        aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
-    aBoard.drawLine(polygon.front()[0],polygon.front()[1],polygon.back()[0],polygon.back()[1]);
-    aBoard.saveSVG("tmp.svg");
-    aBoard.clear();
-    /**** Draw polygon *****/
 
     return polygon;
 }

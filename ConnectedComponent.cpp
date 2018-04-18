@@ -404,7 +404,7 @@ int getConnectedComponent(string input, string output, int threshold, int typeCo
     //Gengerate and draw regions
     vector<Region> regions;
     //string filename=output+".svg";
-    coloringConnectedComponent(thresholderImage, idRegions, regions,"cc.svg");//,filename.c_str()
+    coloringConnectedComponent(thresholderImage, idRegions, regions);//,filename.c_str()
     generateTextImage(regions, domainThresholderImage, output);
 
     Point p(0,0);//(regions.at(0).points.at(0)[0], regions.at(0).points.at(0)[1]);
