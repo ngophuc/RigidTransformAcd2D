@@ -14,7 +14,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">flower.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./testRigidTransform -i ../Samples/flower.pgm -o ../Results/flower -e -a 0.1 -b 0.3 -t 0.314</code>
+<code>./testRigidTransform -i ../Samples/flower.pgm -o ../Results/flower -e -a 0.2 -b 0.1 -t 0.8</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
@@ -23,34 +23,34 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.png">
 				<img width="130" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.png" alt="Input image" />
 			</a>	
-		</td>		
+		</td>	
 		<td align="center" valign="center">
-			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_points.eps">
-				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_points.png" alt="Input points" />
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_poly.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_poly.png" alt="Polygonalization" />
+			</a>
+		</td>	
+		<td align="center" valign="center">
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_decomp.eps">
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_decomp.png" alt="Convex decomposition" />
 			</a>
 		</td>
 		<td align="center" valign="center">
-			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_tpoint.eps">
-				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_tpoint.png" alt="T_point" />
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_shape.eps">
+				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_shape.png" alt="Digitized decomposition" />
 			</a>
 		</td>
     		<td align="center" valign="center">
-			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_thull.eps">
-				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_thull.png" alt="T_hull" />
+			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_result.pmg">
+				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_result.png" alt="Transformed result" />
 			</a>
 		</td>  
-		<td align="center" valign="center">
-			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_tpoly.eps">
-				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_tpoly.png" alt="T_poly" />
-			</a>
-		</td>  	
 		</tr>
 		<tr>
 			<td align="center" valign="center">  Input image </td>
-			<td align="center" valign="center">  Input points </td>
-			<td align="center" valign="center">  Rigid motion point-by-point </td>
-			<td align="center" valign="center">  Rigid motion by convex hull </td>
-			<td align="center" valign="center">  Rigid motion by polygonalization </td>
+			<td align="center" valign="center">  Polygon extraction </td>
+			<td align="center" valign="center">  Convex decomposition </td>
+			<td align="center" valign="center">  Digitized decomposition </td>
+			<td align="center" valign="center">  Transformed result </td>
 		</tr>
 	</table>
 </p>
