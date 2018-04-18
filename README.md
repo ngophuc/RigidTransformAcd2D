@@ -57,7 +57,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">leaf.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./transformDecomShape -i ../Dataset/leaf.pgm -o ../Dataset/leaf_result.pgm -e -a 0.1 -b 0.1 -t 0.1</code>
+<code>./transformDecomShape -i ../Dataset/leaf.pgm -o ../Dataset/leaf_result.pgm -e -a 0.1 -b 0.1 -t 0.314</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
@@ -100,7 +100,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">snowflake.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./transformDecomShape -i ../Samples/snowflake.pgm -o ../Results/snowflake_result.pgm -e -a 0.2 -b 0.1 -t 0.8</code>
+<code>./transformDecomShape -i ../Samples/snowflake.pgm -o ../Results/snowflake_result.pgm -e -a 0.12 -b 0.41 -t 0.14</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
