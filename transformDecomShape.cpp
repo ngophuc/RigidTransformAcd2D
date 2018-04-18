@@ -91,9 +91,8 @@ int main(int argc, char** argv) {
     outFile.open (filename);
     outFile<<vPoints.size()-1<<endl;//number of polygonal chains (without background)
     outFile<<vPoints.back().size()<<" out"<<endl;//first poly chain with nb of points and out chain
-    //for(size_t id=0; id<vPoints.size(); id++)
-    size_t id=1;
     {
+        size_t id=1;
         //coordinate of points
         for(auto it=vPoints.at(id).begin(); it!=vPoints.at(id).end();it++)
             outFile<<(*it)[0]<<" "<<(*it)[1]<<endl;
@@ -108,6 +107,27 @@ int main(int argc, char** argv) {
     }
     outFile.close();
     /*** Convert sdp file to poly file ***/
+
+    /**** Draw polygon *****/
+    Board2D aBoard;
+    aBoard.setLineWidth(15.0);
+    aBoard.setPenColor(DGtal::Color::Black);
+    for(size_t id=0; id<vPoints.size(); id++)
+    {
+        for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
+            aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
+        aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
+    }
+    if(eps){
+        sprintf(filename,"%s_poly.eps",infile.c_str());
+        aBoard.saveEPS(filename);
+    }
+    else{
+        sprintf(filename,"%s_poly.svg",infile.c_str());
+        aBoard.saveSVG(filename);
+    }
+    aBoard.clear();
+    /**** Draw polygon *****/
 
     /*** Use Acd2d decomposition ***/
     //input : *.poly (ex: BarbedThing.poly)
@@ -137,13 +157,12 @@ int main(int argc, char** argv) {
         vector< Point> poly = PointListReader<Point>::getPointsFromFile(filename);
         vecPoly.push_back(poly);
     }
-    vector<vector<Point> > vTri=getTriangles(vPoints.at(id),vecPoly);
+    vector<vector<Point> > vTri=getTriangles(vPoints.at(1),vecPoly);//size_t id=1;
     for(int id_T=0; id_T<vTri.size(); id_T++)
         vecPoly.push_back(vTri.at(id_T));
     /*** Read decomposition points ***/
 
     /**** Draw decomposition *****/
-    Board2D aBoard;
     aBoard.setLineWidth(15.0);
     HueShadeColorMap<double> hueMap(0.0,vecPoly.size());
     for(size_t id=0; id<vecPoly.size(); id++) {
@@ -155,7 +174,7 @@ int main(int argc, char** argv) {
     //Draw polygon
     aBoard.setPenColor(DGtal::Color::Black);
     {
-        id=0;
+        size_t id=0;
         for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
             aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
         aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
@@ -234,7 +253,7 @@ int main(int argc, char** argv) {
     }
     aBoard.setPenColor(DGtal::Color::Black);
     {
-        id=0;
+        size_t id=0;
         for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
             aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
         aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
@@ -266,7 +285,7 @@ int main(int argc, char** argv) {
     }
     aBoard.setPenColor(DGtal::Color::Black);
     {
-        id=0;
+        size_t id=0;
         for(auto it=vPoints.at(id).begin(); it+1!=vPoints.at(id).end();it++)
             aBoard.drawLine((*it)[0],(*it)[1],(*(it+1))[0],(*(it+1))[1]);
         aBoard.drawLine(vPoints.at(id).front()[0],vPoints.at(id).front()[1],vPoints.at(id).back()[0],vPoints.at(id).back()[1]);
@@ -285,7 +304,6 @@ int main(int argc, char** argv) {
     /**** Save transformed shape ****/
     Point pMin,pMax;
     int marge=10;
-    id=1;
     findBoundingBox(tvecConvexShape,pMin,pMax);
     Image imgOut(Domain(pMin-Point(marge,marge),pMax+Point(marge,marge)));
     for(size_t id=0; id<tvecConvexShape.size(); id++)
