@@ -21,7 +21,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 		<tr>
 		<td align="center" valign="center">
 			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.png">
-				<img width="130" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.png" alt="Input image" />
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.png" alt="Input image" />
 			</a>	
 		</td>	
 		<td align="center" valign="center">
@@ -36,12 +36,12 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 		</td>
 		<td align="center" valign="center">
 			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_shape.eps">
-				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_shape.png" alt="Digitized decomposition" />
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_shape.png" alt="Digitized decomposition" />
 			</a>
 		</td>
     		<td align="center" valign="center">
 			<a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_result.pmg">
-				<img width="100" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_result.png" alt="Transformed result" />
+				<img width="120" src="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Results/flower_result.png" alt="Transformed result" />
 			</a>
 		</td>  
 		</tr>
