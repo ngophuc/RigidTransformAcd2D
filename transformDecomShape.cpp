@@ -21,6 +21,8 @@ vector<vector<Point> > generateConvexShape(const vector<vector<Point> >& vecPoin
 
 vector<vector<Point> > getTriangles(const vector<Point>& vecPoints, const vector<vector<Point> >& vecPoly);
 
+//FIXME : NON SQUARE IMAGE !!!!!
+
 int main(int argc, char** argv) {
     /********** Parameters ********/
     po::options_description general_opt("Allowed options are: ");

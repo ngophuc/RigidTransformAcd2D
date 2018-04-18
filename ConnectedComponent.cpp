@@ -338,8 +338,6 @@ void generateTextImage(vector<Region> &regions, Domain domain, string filename, 
     ofstream outfile;
     string output=filename+".txt";
     outfile.open(output.c_str());
-    //outfile << domain.upperBound()[0] << " " << domain.upperBound()[1] << endl;
-    //outfile << domain.lowerBound()[0] << " " << domain.lowerBound()[1] << endl;
     int width = domain.upperBound()[0] - domain.lowerBound()[0] + 1;
     int height = domain.upperBound()[1] - domain.lowerBound()[1] + 1;
     outfile<<width<<" "<<height<<endl;
@@ -362,15 +360,15 @@ void generateTextImage(vector<Region> &regions, Domain domain, string filename, 
         }
     }
 
-    for(int i = width-1; i >= 0; i--)//for(int i = 0; i < width; i++)
+    //Attention write as (w,h) => (-y,x) !!!
+    for(int i = 0; i < width; i++)
     {
         for(int j = 0; j < height - 1; j++)
         {
-            outfile << idRegions[j][i] << setw(2);
+            outfile << idRegions[i][j] << " ";//PHUC
         }
         outfile << idRegions[i][height - 1] << endl;
     }
-
     outfile.close();
 }
 
