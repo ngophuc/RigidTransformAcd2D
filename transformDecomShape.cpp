@@ -21,8 +21,6 @@ vector<vector<Point> > generateConvexShape(const vector<vector<Point> >& vecPoin
 
 vector<vector<Point> > getTriangles(const vector<Point>& vecPoints, const vector<vector<Point> >& vecPoly);
 
-//FIXME : NON SQUARE IMAGE !!!!!
-
 int main(int argc, char** argv) {
     /********** Parameters ********/
     po::options_description general_opt("Allowed options are: ");
@@ -133,7 +131,7 @@ int main(int argc, char** argv) {
 
     /*** Use Acd2d decomposition ***/
     //input : *.poly (ex: BarbedThing.poly)
-    //output : *-acd.poly (ex: BarbedThing-acd.poly) and *_0.sdp, *_1.sdp, ...
+    //output : *-acd.poly (ex: BarbedThing-acd.poly) and *.txt, *_0.sdp, *_1.sdp, ...
     sprintf(filename,"%s.poly",infile.c_str());
     sprintf(instruction,"%sdecomposeShapeAcd2d -s %s",dir.c_str(),filename);
     system(instruction);
@@ -227,7 +225,7 @@ int main(int argc, char** argv) {
     aBoard.clear();
     /**** Draw digitized sets *****/
 
-    /**** Transform shape FIXME : without round !****/
+    /**** Transform shape ****/
     transformation T;
     T[0]=a;
     T[1]=b;
