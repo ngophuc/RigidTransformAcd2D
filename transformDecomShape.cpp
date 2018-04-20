@@ -77,6 +77,7 @@ int main(int argc, char** argv) {
         sprintf(instruction,"%s -r",instruction);
     if(eps)
         sprintf(instruction,"%s -e",instruction);
+    cout<<"instruction: "<<instruction<<endl;
     system(instruction);
     /*** Polygonalize pgm image ***/
 
@@ -134,6 +135,7 @@ int main(int argc, char** argv) {
     //output : *-acd.poly (ex: BarbedThing-acd.poly) and *.txt, *_0.sdp, *_1.sdp, ...
     sprintf(filename,"%s.poly",infile.c_str());
     sprintf(instruction,"%sdecomposeShapeAcd2d -s %s",dir.c_str(),filename);
+    cout<<"instruction: "<<instruction<<endl;
     system(instruction);
 
     ifstream inFile;
