@@ -1,6 +1,6 @@
 # RigidTransformAcd2D
 
-To install the program see <a href="https://github.com/ngophuc/QuasiRegularRigidMotion/blob/master/INSTALL.txt">INSTALL.txt</a> file
+To install the program see <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/INSTALL.txt">INSTALL.txt</a> file
 
 
 If you want you can also directly test the programm online:
