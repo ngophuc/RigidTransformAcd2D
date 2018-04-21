@@ -8,7 +8,7 @@ If you want you can also directly test the programm online:
 http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 
-* [![Build Status](https://travis-ci.org/ngophuc/RigidTransformAcd2D.svg?branch=master)](https://travis-ci.org/ngophuc/QuasiRegularRigidMotion)
+* [![Build Status](https://travis-ci.org/ngophuc/RigidTransformAcd2D.svg?branch=master)](https://travis-ci.org/ngophuc/RigidTransformAcd2D)
 
 # Examples
 
