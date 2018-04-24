@@ -40,7 +40,7 @@ add_executable(polygonalization polygonalization ConnectedComponent Utility)
 target_link_libraries(polygonalization ${DGTAL_LIBRARIES} ${DGtalToolsLibDependencies})
 
 add_executable(decomposeShapeAcd2d acd2d_main.cpp ${SOURCES})
-target_link_libraries(decomposeShapeAcd2d ${PROJECT_SOURCE_DIR}/libs/FIST/libFIST.linux64.a)
+target_link_libraries(decomposeShapeAcd2d ${PROJECT_SOURCE_DIR}/libs/FIST/libFIST.osx.a)#libFIST.linux64.a
 
 add_executable(transformDecomShape2d transformDecomShape Halfplane Boundingbox Utility RigidTransform)
 target_link_libraries(transformDecomShape2d ${DGTAL_LIBRARIES} ${DGtalToolsLibDependencies})

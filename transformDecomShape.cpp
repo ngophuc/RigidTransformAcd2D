@@ -53,13 +53,13 @@ int main(int argc, char** argv) {
     }
     bool eps = vm.count("eps");
     bool reg = vm.count("regular");
-    bool paramTransf=vm.count("tx") && vm.count("ty") && vm.count("theta");
+    //bool paramTransf=vm.count("tx") || vm.count("ty") || vm.count("theta");
     double a=0.0, b=0.0, theta=0.0;
-    if (paramTransf) {
+    //if (paramTransf) {
         a=vm["tx"].as<double>();
         b=vm["ty"].as<double>();
         theta=vm["theta"].as<double>();
-    }
+    //}
     string dir=vm["dir"].as<string>();
     string inputFile=vm["input"].as<string>();
     string outputFile=vm["output"].as<string>();
