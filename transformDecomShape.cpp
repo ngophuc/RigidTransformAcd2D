@@ -314,7 +314,7 @@ int main(int argc, char** argv) {
     PGMWriter<Image>::exportPGM(outputFile,imgOut);
     /**** Save transformed shape ****/
 
-    //Remove temporary files
+    /******* Remove temporay files ******/
     sprintf(filename,"rm %s.txt",infile.c_str());
     system(filename);
     for(int it_File=0; it_File<nbFile; it_File++) {
@@ -327,7 +327,8 @@ int main(int argc, char** argv) {
     system(filename);
     sprintf(filename,"rm %s-acd.poly",infile.c_str());
     system(filename);
-    cerr<<"Well done !"<<endl;
+    /******* Remove temporay files ******/
+
     return 0;
 }
 
