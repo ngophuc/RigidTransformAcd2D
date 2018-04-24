@@ -10,6 +10,52 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 * [![Build Status](https://travis-ci.org/ngophuc/RigidTransformAcd2D.svg?branch=master)](https://travis-ci.org/ngophuc/RigidTransformAcd2D)
 
+# Program parameters
+
+Allowed options are: 
+<table align="right">
+  <tr>
+    <th align=Left>Options</th>
+    <th align=Left>Description</th>
+  </tr>
+  <tr>
+    <td align=Left>-h [ --help ]</th>
+    <td>display this message.</th>
+  </tr>	
+  <tr>
+    <td align=Left>-i [ --input ] arg</td>
+    <td align=Left>input filename.</td>
+  </tr>
+  <tr>
+    <td align=Left>-o [ --output ] arg (=./) </td>
+    <td align=Left>output dir (default ./).</td>
+  </tr>
+  <tr>
+    <td align=Left>-d [ --dir ] arg (=./) </td>
+    <td align=Left> execute dir (default ./).</td>
+  </tr>
+  <tr>
+    <td align=Left>-x [ --tx ] arg (=0) </td>
+    <td align=Left>x-translation.</td>
+  </tr>	
+  <tr>
+    <td align=Left>-y [ --ty ] arg (=0)</th>
+    <td>y-translation.</th>
+  </tr>	
+  <tr>
+    <td align=Left>-t [ --theta ] arg (=0)  </td>
+    <td align=Left>rotation angle.</td>
+  </tr>
+  <tr>
+    <td align=Left>-r [ --regular ]  </td>
+    <td align=Left>With quasi-regular verification.</td>
+  </tr>
+  <tr>
+    <td align=Left>-e [ --eps ] </td>
+    <td align=Left>Save output with eps format.</td>
+  </tr>
+</table>
+
 # Examples
 
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">flower.pgm</a>: </p>&#x000A;&#x000A;
