@@ -328,6 +328,10 @@ int main(int argc, char** argv) {
     system(filename);
     sprintf(filename,"rm %s-acd.poly",infile.c_str());
     system(filename);
+    sprintf(filename,"rm %s_tdecomp.svg",infile.c_str());
+    system(filename);
+    sprintf(filename,"rm %s_tshape.svg",infile.c_str());
+    system(filename);
     /******* Remove temporay files ******/
 
     return 0;

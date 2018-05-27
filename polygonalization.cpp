@@ -113,7 +113,7 @@ int main(int argc, char** argv)
             bool isAngle=verifyAnglePolygon(vecPolygon.at(it_contour));
             if(!isLength || !isAngle) {
                 cerr<<"Polygon is not quasi regular : "<<isLength<<" and "<<isAngle<<endl;
-                exit(-1);
+                //exit(-1);
             }
         }
     /********** Verify angle + length polygon **********/
