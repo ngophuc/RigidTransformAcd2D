@@ -201,6 +201,7 @@ int main(int argc, char** argv) {
 
     /**** Draw digitized sets *****/
     //show points
+    //aBoard << SetMode("PointVector", "Both");
     for(int id=0; id<vecConvexShape.size(); id++) {
         aBoard << CustomStyle("PointVector",new  CustomColors(hueMap(id),hueMap(id)));
         for (size_t i=0; i<vecConvexShape.at(id).size(); i++) {

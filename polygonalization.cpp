@@ -19,8 +19,8 @@ vector<Point> computeConvexHull(const vector<Point>& vecPoint);
 /*** Polygon extraction ***/
 vector<Point> getPolygon(int** tabLabels, vector<Point>& vecBoundary, vector<Point>& polyline);
 /*** Verify polygon ***/
-bool verifyLengthSegPolygon(const vector<Point>& vecPolygon);
-bool verifyAnglePolygon(const vector<Point>& vecPolygon);
+bool verifyLengthSegPolygon(const vector<Point>& vecPolygon, double r=1);
+bool verifyAnglePolygon(const vector<Point>& vecPolygon, double r=M_PI/2.0);
 
 int main(int argc, char** argv)
 {
@@ -278,11 +278,13 @@ vector<Point> computeConvexHull(const vector<Point>& vecPoint)
     typedef InHalfPlaneBySimple3x3Matrix<Point, DGtal::int64_t> Functor;
     Functor functor;
     vector<Point> convexhull;
-
+    /* andrewConvexHull
     //typedef PredicateFromOrientationFunctor2<Functor, true, false> StrictPredicate; //clockwise order
     typedef PredicateFromOrientationFunctor2<Functor, false, false> StrictPredicate; //counter-clockwise order
     StrictPredicate predicate( functor );
     functions::Hull2D::andrewConvexHullAlgorithm( vecPoint.begin(), vecPoint.end(), back_inserter(convexhull), predicate);
+    */
+    functions::Hull2D::melkmanConvexHullAlgorithm( vecPoint.begin(), vecPoint.end(), back_inserter(convexhull), functor);
     /********** Construct convex hull of contour ***************/
 
     //verification for the last and first segments of redundance
@@ -553,29 +555,29 @@ vector<Point> getPolygon(int** tabLabels, vector<Point>& vecBoundary, vector<Poi
 /*** Polygon extraction ***/
 
 /*** Verify polygon ***/
-bool verifyLengthSegPolygon(const vector<Point>& vecPolygon) {
+bool verifyLengthSegPolygon(const vector<Point>& vecPolygon, double r) {
     for(vector<Point>::const_iterator it=vecPolygon.begin(); it+1!=vecPolygon.end(); it++)
-        if(distancePoints(*it,*(it+1))<2)//*sqrt(2)
+        if(distancePoints(*it,*(it+1))<fabs(r-ESP_DOUBLE))
             return false;
     //last segment
-    if(distancePoints(vecPolygon.front(),vecPolygon.back())<2*sqrt(2))
+    if(distancePoints(vecPolygon.front(),vecPolygon.back())<fabs(r-ESP_DOUBLE))
         return false;
     return true;
 }
 
-bool verifyAnglePolygon(const vector<Point>& vecPolygon){
+bool verifyAnglePolygon(const vector<Point>& vecPolygon, double r){
     //first angle
     double angle=acuteAngle(vecPolygon.back(),vecPolygon.front(),vecPolygon.at(1));
-    if(angle<M_PI/2.0)
+    if(angle<fabs(r-ESP_DOUBLE))
         return false;
     for(vector<Point>::const_iterator it=vecPolygon.begin()+1; it+1!=vecPolygon.end(); it++) {
         angle=acuteAngle(*(it-1),*it,*(it+1));
-        if(angle<M_PI/2.0)
+        if(angle<fabs(r-ESP_DOUBLE))
             return false;
     }
     //last angle
     angle=acuteAngle(vecPolygon.at(vecPolygon.size()-2),vecPolygon.back(),vecPolygon.front());
-    if(distancePoints(vecPolygon.front(),vecPolygon.back())<2*sqrt(2))
+    if(angle<fabs(r-ESP_DOUBLE))
         return false;
     return true;
 }
