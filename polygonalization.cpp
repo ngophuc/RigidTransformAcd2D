@@ -112,7 +112,7 @@ int main(int argc, char** argv)
             bool isLength=verifyLengthSegPolygon(vecPolygon.at(it_contour));
             bool isAngle=verifyAnglePolygon(vecPolygon.at(it_contour));
             if(!isLength || !isAngle) {
-                cerr<<"Polygon is not quasi regular : "<<isLength<<" and "<<isAngle<<endl;
+                cerr<<"Polygon is not discrete regular : "<<isLength<<" and "<<isAngle<<endl;
                 //exit(-1);
             }
         }
@@ -557,10 +557,10 @@ vector<Point> getPolygon(int** tabLabels, vector<Point>& vecBoundary, vector<Poi
 /*** Verify polygon ***/
 bool verifyLengthSegPolygon(const vector<Point>& vecPolygon, double r) {
     for(vector<Point>::const_iterator it=vecPolygon.begin(); it+1!=vecPolygon.end(); it++)
-        if(distancePoints(*it,*(it+1))<fabs(r-ESP_DOUBLE))
+        if(distancePoints(*it,*(it+1))<2.0*fabs(r-ESP_DOUBLE))
             return false;
     //last segment
-    if(distancePoints(vecPolygon.front(),vecPolygon.back())<fabs(r-ESP_DOUBLE))
+    if(distancePoints(vecPolygon.front(),vecPolygon.back())<2.0*fabs(r-ESP_DOUBLE))
         return false;
     return true;
 }
@@ -568,16 +568,16 @@ bool verifyLengthSegPolygon(const vector<Point>& vecPolygon, double r) {
 bool verifyAnglePolygon(const vector<Point>& vecPolygon, double r){
     //first angle
     double angle=acuteAngle(vecPolygon.back(),vecPolygon.front(),vecPolygon.at(1));
-    if(angle<fabs(r-ESP_DOUBLE))
+    if(angle<fabs(r-ESP_DOUBLE) || angle>fabs(3*r-ESP_DOUBLE))
         return false;
     for(vector<Point>::const_iterator it=vecPolygon.begin()+1; it+1!=vecPolygon.end(); it++) {
         angle=acuteAngle(*(it-1),*it,*(it+1));
-        if(angle<fabs(r-ESP_DOUBLE))
+        if(angle<fabs(r-ESP_DOUBLE) || angle>fabs(3*r-ESP_DOUBLE))
             return false;
     }
     //last angle
     angle=acuteAngle(vecPolygon.at(vecPolygon.size()-2),vecPolygon.back(),vecPolygon.front());
-    if(angle<fabs(r-ESP_DOUBLE))
+    if(angle<fabs(r-ESP_DOUBLE) || angle>fabs(3*r-ESP_DOUBLE))
         return false;
     return true;
 }
