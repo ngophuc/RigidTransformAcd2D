@@ -225,7 +225,7 @@ int main(int argc, char** argv) {
         sprintf(filename,"%s_shape.svg",infile.c_str());
         aBoard.saveSVG(filename);
     }
-    aBoard.clear();
+    //aBoard.clear();
     /**** Draw digitized sets *****/
 
     /**** Transform shape ****/
@@ -328,6 +328,7 @@ int main(int argc, char** argv) {
     system(filename);
     sprintf(filename,"rm %s-acd.poly",infile.c_str());
     system(filename);
+
     if(eps)
         sprintf(filename,"rm %s_tdecomp.eps",infile.c_str());
     else
