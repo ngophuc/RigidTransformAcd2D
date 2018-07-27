@@ -78,7 +78,11 @@ int main(int argc, char** argv) {
     if(eps)
         sprintf(instruction,"%s -e",instruction);
     cout<<"instruction: "<<instruction<<endl;
-    system(instruction);
+    int status = system(instruction);
+    if (status > 0) {
+        cout << "Error: Object is not discrete regular" <<endl;
+        exit(-1);
+    }
     /*** Polygonalize pgm image ***/
 
     /*** Convert sdp file to poly file ***/

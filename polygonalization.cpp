@@ -113,7 +113,7 @@ int main(int argc, char** argv)
             bool isAngle=verifyAnglePolygon(vecPolygon.at(it_contour));
             if(!isLength && !isAngle) {
                 cerr<<"Polygon is not discrete regular : "<<isLength<<" and "<<isAngle<<endl;
-                //exit(-1);
+                exit(EXIT_FAILURE);
             }
         }
     /********** Verify angle + length polygon **********/
