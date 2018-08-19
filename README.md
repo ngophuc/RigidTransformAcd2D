@@ -189,7 +189,7 @@ Allowed options are:
 <!--
 <p>File <a href="https://github.com/ngophuc/RigidTransformAcd2D/blob/master/Samples/flower.pgm">hand.pgm</a>: </p>&#x000A;&#x000A;
 <pre class="code highlight js-syntax-highlight plaintext">
-<code>./transformDecomShape2d -i ../Dataset/hand.pgm -o ../Dataset/hand_result.pgm -e -r -a 0.1 -b 0.1 -t 0.1</code>
+<code>./transformDecomShape2d -i ../Samples/hand.pgm -o ../Results/hand_result.pgm -e -r -a 0.1 -b 0.1 -t 0.1</code>
 </pre>&#x000A;&#x000A;
 <p>
 	<table cellpadding="5">
