@@ -56,6 +56,7 @@ Allowed options are:
     <td align=Left>Save output with eps format.</td>
   </tr>
 </table>
+<br>
 
 # Examples
 
