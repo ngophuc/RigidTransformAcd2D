@@ -14,7 +14,7 @@ http://ipol-geometry.loria.fr/~phuc/ipol_demo/DecompConvexRigidMotion/
 
 Allowed options are: 
 <br>
-<table align="right">
+<table align="left">
   <tr>
     <th align=Left>Options</th>
     <th align=Left>Description</th>
@@ -56,7 +56,7 @@ Allowed options are:
     <td align=Left>Save output with eps format.</td>
   </tr>
 </table>
-<br><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 # Examples
 
